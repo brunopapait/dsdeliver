@@ -29,9 +29,6 @@ public class OrderService {
 	public List<OrderDTO> findAll() throws Exception {
 		List<Order> orders = orderRepository.findAllOrdersWithProducts();
 
-		if (orders.isEmpty()) {
-			throw new Exception("A lista de pedidos está vazia.");
-		}
 		return orders.stream().map(order -> new OrderDTO(order)).collect(Collectors.toList());
 	}
 

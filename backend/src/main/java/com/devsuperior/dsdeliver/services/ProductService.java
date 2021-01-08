@@ -21,10 +21,6 @@ public class ProductService {
 	public List<ProductDTO> findAll() throws Exception {
 		List<Product> products = productRepository.findAllByOrderByNameAsc();
 
-		if (products.isEmpty()) {
-			throw new Exception("A lista de produtos estão vazias.");
-		}
-
 		return products.stream().map(product -> new ProductDTO(product)).collect(Collectors.toList());
 
 	}
