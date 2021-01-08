@@ -13,18 +13,18 @@ import com.devsuperior.dsdeliver.repositories.ProductRepository;
 
 @Service
 public class ProductService {
-	
+
 	@Autowired
 	private ProductRepository productRepository;
 
 	@Transactional(readOnly = true)
 	public List<ProductDTO> findAll() throws Exception {
 		List<Product> products = productRepository.findAllByOrderByNameAsc();
-		
+
 		if (products.isEmpty()) {
 			throw new Exception("A lista de produtos estão vazias.");
 		}
-		
+
 		return products.stream().map(product -> new ProductDTO(product)).collect(Collectors.toList());
 
 	}
